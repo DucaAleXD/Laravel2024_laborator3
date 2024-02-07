@@ -2,19 +2,29 @@
 @section('title','Phones')
 @section('content')
 <h4>Lista de contacte</h4>
+<a href="{{route('phones.create')}}">Adauga</a>
+<hr>
+@if (session('success')){
+    <div class="alert alert-success">
+        {{session('success')}}
+    </div>
+}
+    
+@endif
 <table>
     <thead>
         <tr>
             <th>#</th>
-            <th>#User</th>
-            <th>#Phone</th>
-            <th>#Options</th>
+            <th>User</th>
+            <th>Phone</th>
+            <th>Options</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($phones as $phone )
+        @forelse ($phones as $phone )
             <tr>
-                <td>{{$phone->user()-fullName()}}</td>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$phone->user()->get()->first()->name}}</td>
                 <td>{{$phone->phone}}</td>
                 <td>
                     <a href="">Edit</a>
@@ -25,7 +35,7 @@
             <tr>
                 <td colspan="4">No data</td>
             </tr>
-            @endforeach
-        @endforeach
+            @endforelse
+       
     </tbody>
 </table>

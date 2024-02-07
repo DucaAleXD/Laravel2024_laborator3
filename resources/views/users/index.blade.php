@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Users</title>
-</head>
-<body>
-     <h1>Salut</h1>
+
+@extends('layouts.app')
+
+@section('title','Users')
+@section('content')
+    <div class="container">
+        <h4>Users</h4>
+            <a href="{{route('users.create')}}">Adauga</a>
+            <hr>
 @forelse ( $users as $user )
     <div>
         <b>Name</b>
@@ -16,10 +15,9 @@
         {{$user->email}}
         <p>------------</p>
     </div>
-@empty
+        @empty
     <p>Nu sunt utilizatori</p>
-@endforelse
-
-   
-</body>
-</html>
+    @endforelse
+    {{$users->links()}}
+</div>
+    
